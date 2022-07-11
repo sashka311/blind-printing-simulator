@@ -1,0 +1,13 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  background: #fff;
+  margin: 15px auto;
+  max-width: 750px;
+}
+
+/*# sourceMappingURL=index.css.map */

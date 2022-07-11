@@ -1,0 +1,51 @@
+@import "../../styles/variables.scss";
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  padding: 20px 0;
+  .wrapper {
+    display: flex;
+  }
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+  .changeMode {
+    color: $base-color;
+    cursor: pointer;
+  }
+  .changeMode:after {
+    content: "▼";
+    margin-left: auto;
+  }
+  .reset {
+    margin-left: 30px;
+    cursor: pointer;
+  }
+  .focus {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    height: 27px;
+    width: 90px;
+    background-color: #c6c8ca;
+    border-radius: 30px;
+    cursor: pointer;
+    color: #fff;
+  }
+  .speed,
+  .mistakes {
+    display: flex;
+    cursor: pointer;
+  }
+  .speedValue,
+  .mistakesValue {
+    margin-left: 7px;
+  }
+  .speed {
+    margin-right: 15px;
+  }
+}

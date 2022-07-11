@@ -1,0 +1,12 @@
+@import "variables.scss";
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  background: $background-color;
+  margin: 15px auto;
+  max-width: 750px;
+}
