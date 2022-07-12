@@ -40,7 +40,12 @@
 .header .speed,
 .header .mistakes {
   display: flex;
+  align-items: center;
   cursor: pointer;
+}
+.header .speedIcon,
+.header .mistakesIcon {
+  height: 20px;
 }
 .header .speedValue,
 .header .mistakesValue {

@@ -1,4 +1,6 @@
 @import "variables.scss";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Source+Sans+Pro&display=swap");
+
 * {
   padding: 0;
   margin: 0;
@@ -9,4 +11,10 @@
   background: $background-color;
   margin: 15px auto;
   max-width: 750px;
+  font-family: "Poppins", sans-serif;
+}
+input,
+textarea,
+select {
+  font-family: inherit;
 }

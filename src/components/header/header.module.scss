@@ -39,8 +39,15 @@
   .speed,
   .mistakes {
     display: flex;
+    align-items: center;
+
     cursor: pointer;
   }
+  .speedIcon,
+  .mistakesIcon {
+    height: 20px;
+  }
+
   .speedValue,
   .mistakesValue {
     margin-left: 7px;

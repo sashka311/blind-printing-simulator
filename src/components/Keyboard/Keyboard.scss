@@ -1,0 +1,48 @@
+.keyboard {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+}
+.line {
+  display: flex;
+  justify-content: center;
+}
+.key {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 49px;
+  height: 49px;
+  margin: 1px;
+  border: 1px solid black;
+  border-radius: 5px;
+  transition: background-color 0.1s linear;
+}
+.active {
+  background: #cbcbcb;
+}
+.sup {
+  margin-left: 5px;
+}
+.sys {
+  font-size: 12px;
+}
+.back {
+  width: 75px;
+}
+.tab {
+  width: 75px;
+}
+.caps {
+  width: 88px;
+}
+.shift {
+  width: 114px;
+}
+.enter {
+  width: 88px;
+}
+.space {
+  width: 300px;
+}
