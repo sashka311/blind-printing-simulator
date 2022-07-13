@@ -7,6 +7,7 @@ const Line = ({ lineArr }) => {
         <div
           key={index}
           data-value={elem.value.toLowerCase()}
+          data-sup={elem.sup}
           className={elem.className}
         >
           {elem.value}

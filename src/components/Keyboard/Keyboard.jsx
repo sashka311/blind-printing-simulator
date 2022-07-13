@@ -30,8 +30,8 @@ const Keyboard = () => {
       { value: "y", sup: "", className: "key" },
       { value: "u", sup: "", className: "key" },
       { value: "i", sup: "", className: "key" },
-      { value: "o", sup: "(", className: "key" },
-      { value: "p", sup: ")", className: "key" },
+      { value: "o", sup: "", className: "key" },
+      { value: "p", sup: "", className: "key" },
       { value: "[", sup: "{", className: "key" },
       { value: "]", sup: "}", className: "key" },
       { value: "1", sup: "|", className: "key" },
@@ -68,29 +68,28 @@ const Keyboard = () => {
     [{ value: " ", sup: "", className: "key sys space" }],
   ];
 
-  document.addEventListener("keydown", (e) => {
-    console.log(e.key);
-  });
-
+  //govno
   const handleKeyOnKeyDown = (e) => {
     if (!e.target.type) return;
 
-    const key = document.querySelector(`[data-value="${e.key.toLowerCase()}"]`);
+    let key = document.querySelector(`[data-value="${e.key.toLowerCase()}"]`);
 
-    if (!key) return;
-
-    key.classList.add("active");
+    if (!key) {
+      key = document.querySelector(`[data-sup="${e.key.toLowerCase()}"]`);
+    }
+    if (key) key.classList.add("active");
   };
   const handleKeyOnKeyUp = (e) => {
     if (!e.target.type) return;
 
-    const key = document.querySelector(`[data-value="${e.key.toLowerCase()}"]`);
+    let key = document.querySelector(`[data-value="${e.key.toLowerCase()}"]`);
 
-    if (!key) return;
+    if (!key) {
+      key = document.querySelector(`[data-sup="${e.key.toLowerCase()}"]`);
+    }
 
-    key.classList.remove("active");
+    if (key) key.classList.remove("active");
   };
-
   document.addEventListener("keydown", handleKeyOnKeyDown);
   document.addEventListener("keyup", handleKeyOnKeyUp);
 
