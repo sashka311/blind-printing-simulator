@@ -1,4 +1,6 @@
-.input {
+.input,
+.inputError {
+  border-radius: 4px;
   width: 100%;
   border: 0;
   margin-bottom: 10px;
@@ -6,11 +8,20 @@
   border-bottom: 1px dotted black;
   font-size: 16px;
 }
+.inputError {
+  color: black;
+  background-color: rgba(245, 0, 0, 0.5);
+}
 
-.input:focus {
+.input:focus,
+.inputError:focus {
   outline: none;
 }
 
 .text {
   width: 100%;
+}
+
+.checked {
+  color: #9a9a9a;
 }

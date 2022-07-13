@@ -68,38 +68,38 @@ const Keyboard = () => {
     [{ value: " ", sup: "", className: "key sys space" }],
   ];
 
-  //govno
   const handleKeyOnKeyDown = (e) => {
     if (!e.target.type) return;
 
-    let key = document.querySelector(`[data-value="${e.key.toLowerCase()}"]`);
+    const key = e.key.toLowerCase();
+    const valueQuery = document.querySelector(`[data-value="${key}"]`);
+    const supQuery = document.querySelector(`[data-sup="${key}"]`);
 
-    if (!key) {
-      key = document.querySelector(`[data-sup="${e.key.toLowerCase()}"]`);
-    }
-    if (key) key.classList.add("active");
+    const keyElement = valueQuery || supQuery;
+
+    if (keyElement) keyElement.classList.add("active");
   };
+
   const handleKeyOnKeyUp = (e) => {
     if (!e.target.type) return;
 
-    let key = document.querySelector(`[data-value="${e.key.toLowerCase()}"]`);
+    const key = e.key.toLowerCase();
+    const valueQuery = document.querySelector(`[data-value="${key}"]`);
+    const supQuery = document.querySelector(`[data-sup="${key}"]`);
 
-    if (!key) {
-      key = document.querySelector(`[data-sup="${e.key.toLowerCase()}"]`);
-    }
+    const keyElement = valueQuery || supQuery;
 
-    if (key) key.classList.remove("active");
+    if (keyElement) keyElement.classList.remove("active");
   };
+
   document.addEventListener("keydown", handleKeyOnKeyDown);
   document.addEventListener("keyup", handleKeyOnKeyUp);
 
   return (
     <div className="keyboard">
-      <Line lineArr={keyArray[0]} />
-      <Line lineArr={keyArray[1]} />
-      <Line lineArr={keyArray[2]} />
-      <Line lineArr={keyArray[3]} />
-      <Line lineArr={keyArray[4]} />
+      {keyArray.map((keyRow, index) => (
+        <Line lineArr={keyRow} key={index} />
+      ))}
     </div>
   );
 };

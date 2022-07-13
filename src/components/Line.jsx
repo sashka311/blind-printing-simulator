@@ -11,12 +11,10 @@ const Line = ({ lineArr }) => {
           className={elem.className}
         >
           {elem.value}
-          {elem.sup ? (
+          {elem.sup && (
             <div className="sup">
               <sup>{elem.sup}</sup>
             </div>
-          ) : (
-            ""
           )}
         </div>
       ))}
