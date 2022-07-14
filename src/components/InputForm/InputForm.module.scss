@@ -1,3 +1,4 @@
+@import "../../styles/variables.scss";
 .input,
 .inputError {
   border-radius: 4px;
@@ -5,12 +6,15 @@
   border: 0;
   margin-bottom: 10px;
   padding: 5px 0;
-  border-bottom: 1px dotted black;
+  border-bottom: 1px dotted var(--border-color-default);
+  color: var(--font-color-default);
   font-size: 16px;
+  background: transparent;
+  transition: background-color $transition-mode $transition-ms, color $transition-mode $transition-ms,
+    border-bottom-color $transition-mode $transition-ms;
 }
 .inputError {
-  color: black;
-  background-color: rgba(245, 0, 0, 0.5);
+  background-color: rgba(245, 0, 0);
 }
 
 .input:focus,
@@ -19,6 +23,8 @@
 }
 
 .text {
+  color: var(--font-color-default);
+  transition: color $transition-mode $transition-ms;
   width: 100%;
 }
 

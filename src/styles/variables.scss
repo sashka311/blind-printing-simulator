@@ -1,2 +1,41 @@
-$background-color: #fff;
 $base-color: #839095;
+
+$transition-mode: ease-in;
+$transition-ms: 0.3s;
+
+$body-background-light: #fff;
+$body-background-dark: rgba(0, 0, 0, 0.85);
+
+$svg-color-light: #000000;
+$svg-color-dark: #ffffff;
+
+$focus-background-light: #c6c8ca;
+$focus-background-dark: #343434;
+
+$font-color-light: #000000;
+$font-color-dark: #ffffff;
+
+$border-color-light: #000000;
+$border-color-dark: #ffffff;
+
+:root {
+  --body-background-light: #{$body-background-light};
+  --body-background-dark: #{$body-background-dark};
+  --body-background-default: var(#{--body-background-light});
+
+  --svg-color-light: #{$svg-color-light};
+  --svg-color-dark: #{$svg-color-dark};
+  --svg-color-default: var(#{--svg-color-light});
+
+  --focus-background-light: #{$focus-background-light};
+  --focus-background-dark: #{$focus-background-dark};
+  --focus-background-default: var(#{--focus-background-light});
+
+  --font-color-light: #{$font-color-light};
+  --font-color-dark: #{$font-color-dark};
+  --font-color-default: var(#{--font-color-light});
+
+  --border-color-light: #{$border-color-light};
+  --border-color-dark: #{$border-color-dark};
+  --border-color-default: var(#{--border-color-light});
+}

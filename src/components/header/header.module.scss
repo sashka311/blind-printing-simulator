@@ -5,12 +5,15 @@
   justify-content: space-between;
   flex-wrap: nowrap;
   padding: 20px 0;
+  color: var(--font-color-default);
+  transition: color $transition-mode $transition-ms;
   .wrapper {
     display: flex;
   }
   svg {
     width: 20px;
     height: 20px;
+    transition: color $transition-mode $transition-ms;
   }
   .changeMode {
     color: $base-color;
@@ -23,19 +26,11 @@
   .reset {
     margin-left: 30px;
     cursor: pointer;
+    svg {
+      color: var(--svg-color-default);
+    }
   }
-  .focus {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-transform: uppercase;
-    height: 27px;
-    width: 90px;
-    background-color: #c6c8ca;
-    border-radius: 30px;
-    cursor: pointer;
-    color: #fff;
-  }
+
   .speed,
   .mistakes {
     display: flex;
@@ -54,5 +49,34 @@
   }
   .speed {
     margin-right: 15px;
+  }
+  //switcher
+  .focus {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    height: 40px;
+    width: 120px;
+    border: 3px solid var(--focus-background-default);
+    border-radius: 30px;
+    cursor: pointer;
+    color: black;
+    user-select: none;
+    transition: background-color $transition-mode $transition-ms;
+  }
+  .circleSwitch {
+    position: absolute;
+    transform: translateX(-40px);
+    height: 25px;
+    width: 25px;
+    background-color: black;
+    border-radius: 50%;
+    transition: transform 0.1s linear;
+  }
+  .circleSwitch.active {
+    transform: translateX(40px);
+    transition: transform 0.1s linear;
   }
 }

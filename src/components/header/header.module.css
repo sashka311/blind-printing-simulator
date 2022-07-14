@@ -1,10 +1,30 @@
 @charset "UTF-8";
+:root {
+  --body-background-light: #fff;
+  --body-background-dark: rgba(0, 0, 0, 0.85);
+  --body-background-default: var(--body-background-light);
+  --svg-color-light: #000000;
+  --svg-color-dark: #ffffff;
+  --svg-color-default: var(--svg-color-light);
+  --focus-background-light: #c6c8ca;
+  --focus-background-dark: #343434;
+  --focus-background-default: var(--focus-background-light);
+  --font-color-light: #000000;
+  --font-color-dark: #ffffff;
+  --font-color-default: var(--font-color-light);
+  --border-color-light: #000000;
+  --border-color-dark: #ffffff;
+  --border-color-default: var(--border-color-light);
+}
+
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: nowrap;
   padding: 20px 0;
+  color: var(--font-color-default);
+  transition: color ease-in 0.3s;
 }
 .header .wrapper {
   display: flex;
@@ -12,6 +32,7 @@
 .header svg {
   width: 20px;
   height: 20px;
+  transition: color ease-in 0.3s;
 }
 .header .changeMode {
   color: #839095;
@@ -25,17 +46,8 @@
   margin-left: 30px;
   cursor: pointer;
 }
-.header .focus {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-transform: uppercase;
-  height: 27px;
-  width: 90px;
-  background-color: #c6c8ca;
-  border-radius: 30px;
-  cursor: pointer;
-  color: #fff;
+.header .reset svg {
+  color: var(--svg-color-default);
 }
 .header .speed,
 .header .mistakes {
@@ -53,6 +65,34 @@
 }
 .header .speed {
   margin-right: 15px;
+}
+.header .focus {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  height: 40px;
+  width: 120px;
+  border: 3px solid var(--focus-background-default);
+  border-radius: 30px;
+  cursor: pointer;
+  color: black;
+  user-select: none;
+  transition: background-color ease-in 0.3s;
+}
+.header .circleSwitch {
+  position: absolute;
+  transform: translateX(-40px);
+  height: 25px;
+  width: 25px;
+  background-color: black;
+  border-radius: 50%;
+  transition: transform 0.1s linear;
+}
+.header .circleSwitch.active {
+  transform: translateX(40px);
+  transition: transform 0.1s linear;
 }
 
 /*# sourceMappingURL=header.module.css.map */

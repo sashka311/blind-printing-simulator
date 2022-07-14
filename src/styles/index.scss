@@ -7,11 +7,16 @@
   box-sizing: border-box;
 }
 
+#root {
+  background: var(--body-background-default);
+  transition: background-color $transition-mode $transition-ms;
+}
 .App {
-  background: $background-color;
-  margin: 15px auto;
+  padding-top: 15px;
+  margin: 0 auto;
   max-width: 750px;
   font-family: "Poppins", sans-serif;
+  height: 100vh;
 }
 input,
 textarea,

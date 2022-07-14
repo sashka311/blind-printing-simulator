@@ -1,4 +1,24 @@
+:root {
+  --body-background-light: #fff;
+  --body-background-dark: rgba(0, 0, 0, 0.85);
+  --body-background-default: var(--body-background-light);
+  --svg-color-light: #000000;
+  --svg-color-dark: #ffffff;
+  --svg-color-default: var(--svg-color-light);
+  --focus-background-light: #c6c8ca;
+  --focus-background-dark: #343434;
+  --focus-background-default: var(--focus-background-light);
+  --font-color-light: #000000;
+  --font-color-dark: #ffffff;
+  --font-color-default: var(--font-color-light);
+  --border-color-light: #000000;
+  --border-color-dark: #ffffff;
+  --border-color-default: var(--border-color-light);
+}
+
 .keyboard {
+  color: var(--font-color-default);
+  transition: color ease-in 0.3s;
   margin-top: 50px;
   display: flex;
   flex-direction: column;
@@ -17,9 +37,9 @@
   width: 49px;
   height: 49px;
   margin: 1px;
-  border: 1px solid black;
+  border: 1px solid var(--border-color-default);
   border-radius: 5px;
-  transition: background-color 0.1s ease-in;
+  transition: background-color 0.1s ease-in, border-color ease-in 0.3s;
 }
 
 .active {

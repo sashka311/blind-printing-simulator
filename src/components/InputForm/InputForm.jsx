@@ -1,30 +1,30 @@
 import React, { useEffect, useState } from "react";
 import c from "../InputForm/InputForm.module.css";
-import Text from "./Text";
 
-const InputForm = () => {
+const InputForm = ({ refresh }) => {
   const [inputValue, setInputValue] = useState("");
   const [expectedSymbol, setExpectedSymbol] = useState(0);
-  const textArr = ["123", "222", "444"];
-
+  const textArr = [
+    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam dolore explicabo ipsa",
+    "222",
+    "444",
+  ];
   const [error, setError] = useState(false);
-  const [currentLine, setCurrentLine] = useState(textArr[Math.floor(Math.random() * textArr.length)]);
+  const [currentLine, setCurrentLine] = useState(textArr[Math.trunc(Math.random() * textArr.length)]);
+  const checkedSymbols = currentLine.slice(0, expectedSymbol);
+  const unCheckedSymbols = currentLine.slice(expectedSymbol, currentLine.length);
+
+  //////////////////////////////////////////////////////////
 
   const showError = () => {
     setError(true);
     setTimeout(() => setError(false), 150);
   };
-
-  const refresh = () => {
-    setInputValue("");
-    setExpectedSymbol(0);
-    setCurrentLine(textArr[Math.floor(Math.random() * textArr.length)]);
-  };
-
   const handleCheckInput = (e) => {
     //переход на новую строку
-    if ((e.key === "Enter" || e.key === "Space") && expectedSymbol === currentLine.length) {
-      refresh();
+    if ((e.key === "Enter" || e.key === " ") && expectedSymbol === currentLine.length) {
+      refresh(setInputValue, setExpectedSymbol, setCurrentLine, textArr);
+      return;
     }
 
     if (e.key !== currentLine[expectedSymbol] && e.key.length === 1) {
@@ -43,7 +43,6 @@ const InputForm = () => {
   const handleInputOnChange = (e) => {
     setInputValue(e.target.value);
   };
-
   return (
     <div>
       <input
@@ -54,14 +53,10 @@ const InputForm = () => {
         onKeyUp={handleCheckInput}
         type="text"
       />
-      <Text
-        inputValue={inputValue}
-        setInputValue={setInputValue}
-        expectedSymbol={expectedSymbol}
-        setExpectedSymbol={setExpectedSymbol}
-        textArr={textArr}
-        currentLine={currentLine}
-      />
+      <div className={c.text}>
+        <span className={c.checked}>{checkedSymbols}</span>
+        {unCheckedSymbols}
+      </div>
     </div>
   );
 };

@@ -1,15 +1,39 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Source+Sans+Pro&display=swap");
+:root {
+  --body-background-light: #fff;
+  --body-background-dark: rgba(0, 0, 0, 0.85);
+  --body-background-default: var(--body-background-light);
+  --svg-color-light: #000000;
+  --svg-color-dark: #ffffff;
+  --svg-color-default: var(--svg-color-light);
+  --focus-background-light: #c6c8ca;
+  --focus-background-dark: #343434;
+  --focus-background-default: var(--focus-background-light);
+  --font-color-light: #000000;
+  --font-color-dark: #ffffff;
+  --font-color-default: var(--font-color-light);
+  --border-color-light: #000000;
+  --border-color-dark: #ffffff;
+  --border-color-default: var(--border-color-light);
+}
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
+#root {
+  background: var(--body-background-default);
+  transition: background-color ease-in 0.3s;
+}
+
 .App {
-  background: #fff;
-  margin: 15px auto;
+  padding-top: 15px;
+  margin: 0 auto;
   max-width: 750px;
   font-family: "Poppins", sans-serif;
+  height: 100vh;
 }
 
 input,
