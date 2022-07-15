@@ -2,7 +2,7 @@ import React from "react";
 import "./Keyboard.css";
 import Line from "../Line";
 
-const Keyboard = () => {
+const Keyboard = ({ isFocused }) => {
   const keyArray = [
     [
       { value: "`", code: "Backquote", sup: "~", className: "key" },

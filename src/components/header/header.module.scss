@@ -1,4 +1,13 @@
 @import "../../styles/variables.scss";
+
+$width: 55px;
+$translateCircle: $width - 28px;
+$translateRightIcon: $width - 25px;
+
+$widthFocus: 84px;
+$translateCircleFocus: $width;
+$translateRightIconFocus: $width - 26px;
+
 .header {
   display: flex;
   align-items: center;
@@ -9,6 +18,12 @@
   transition: color $transition-mode $transition-ms;
   .wrapper {
     display: flex;
+    align-items: center;
+  }
+  .wrapperIcons {
+    display: flex;
+    align-items: center;
+    width: 127px;
   }
   svg {
     width: 20px;
@@ -26,6 +41,7 @@
   .reset {
     margin-left: 30px;
     cursor: pointer;
+    height: 20px;
     svg {
       color: var(--svg-color-default);
     }
@@ -50,33 +66,109 @@
   .speed {
     margin-right: 15px;
   }
-  //switcher
-  .focus {
-    position: relative;
+}
+
+.switch,
+.switchFocus {
+  position: relative;
+  display: inline-block;
+  width: $width;
+  height: 27px;
+  user-select: none;
+}
+
+.switch input,
+.switchFocus input {
+  display: none;
+}
+
+.slider {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #c6c8ca;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 21px;
+  width: 21px;
+  left: 4px;
+  bottom: 3px;
+  background-color: white;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  border-radius: 50%;
+  z-index: 1000;
+}
+
+input:checked + .slider {
+  background-color: #343434;
+  .off {
+    display: none;
+  }
+  .on {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    text-transform: uppercase;
-    height: 40px;
-    width: 120px;
-    border: 3px solid var(--focus-background-default);
-    border-radius: 30px;
-    cursor: pointer;
-    color: black;
-    user-select: none;
-    transition: background-color $transition-mode $transition-ms;
-  }
-  .circleSwitch {
-    position: absolute;
-    transform: translateX(-40px);
-    height: 25px;
-    width: 25px;
-    background-color: black;
-    border-radius: 50%;
-    transition: transform 0.1s linear;
-  }
-  .circleSwitch.active {
-    transform: translateX(40px);
-    transition: transform 0.1s linear;
   }
 }
+
+input:checked + .slider:before {
+  transform: translateX($translateCircle);
+}
+
+.on,
+.off {
+  display: flex;
+  align-items: center;
+  height: 20px;
+  width: 20px;
+}
+
+.on {
+  transform: translateX(5px);
+  display: none;
+}
+.off {
+  transform: translateX($translateRightIcon);
+}
+
+.switchFocus {
+  width: $widthFocus;
+  color: white;
+  .slider:before {
+    bottom: 1px;
+    left: 2px;
+  }
+  .slider {
+    border: 2px solid #c6c8ca;
+  }
+  input:checked + .slider:before {
+    transform: translateX($translateCircleFocus);
+  }
+  .off {
+    transform: translateX($translateRightIconFocus);
+  }
+  .slider {
+    background-color: var(--focus-background-default);
+  }
+}
+
+.switchFocus.focused {
+  color: #c6c8ca;
+  .slider {
+    background: transparent;
+  }
+  .slider:before {
+    background: #c6c8ca;
+  }
+}
+

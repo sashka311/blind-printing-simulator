@@ -7,7 +7,7 @@
   --svg-color-dark: #ffffff;
   --svg-color-default: var(--svg-color-light);
   --focus-background-light: #c6c8ca;
-  --focus-background-dark: #343434;
+  --focus-background-dark: transparent;
   --focus-background-default: var(--focus-background-light);
   --font-color-light: #000000;
   --font-color-dark: #ffffff;

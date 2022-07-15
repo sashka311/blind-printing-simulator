@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from "react";
 import c from "../InputForm/InputForm.module.css";
 
-const InputForm = ({ refresh }) => {
+const InputForm = ({
+  refresh,
+  mistakesAmount,
+  setMistakesAmount,
+  charactersAmount,
+  setCharactersAmount,
+  setSeconds,
+  seconds,
+}) => {
   const [inputValue, setInputValue] = useState("");
   const [expectedSymbol, setExpectedSymbol] = useState(0);
   const textArr = [
@@ -11,6 +19,7 @@ const InputForm = ({ refresh }) => {
   ];
   const [error, setError] = useState(false);
   const [currentLine, setCurrentLine] = useState(textArr[Math.trunc(Math.random() * textArr.length)]);
+  const [stopwatchId, setStopwatchId] = useState();
   const checkedSymbols = currentLine.slice(0, expectedSymbol);
   const unCheckedSymbols = currentLine.slice(expectedSymbol, currentLine.length);
 
@@ -29,9 +38,12 @@ const InputForm = ({ refresh }) => {
 
     if (e.key !== currentLine[expectedSymbol] && e.key.length === 1) {
       showError();
+      setMistakesAmount(mistakesAmount + 1);
+      setCharactersAmount(charactersAmount + 1);
       setInputValue(inputValue.slice(0, -1));
     }
     if (e.key === currentLine[expectedSymbol]) {
+      setCharactersAmount(charactersAmount + 1);
       setExpectedSymbol(expectedSymbol + 1);
     }
   };
@@ -43,9 +55,21 @@ const InputForm = ({ refresh }) => {
   const handleInputOnChange = (e) => {
     setInputValue(e.target.value);
   };
+
+  const handleStartStopwatch = () => {
+    const stopWatch = setInterval(() => {
+      setSeconds((prev) => prev + 1);
+    }, 1000);
+    setStopwatchId(stopWatch);
+  };
+  const handleStopStopwatch = () => {
+    clearInterval(stopwatchId);
+  };
   return (
     <div>
       <input
+        onFocus={handleStartStopwatch}
+        onBlur={handleStopStopwatch}
         className={error ? c.inputError : c.input}
         value={inputValue}
         onChange={handleInputOnChange}
@@ -55,7 +79,7 @@ const InputForm = ({ refresh }) => {
       />
       <div className={c.text}>
         <span className={c.checked}>{checkedSymbols}</span>
-        {unCheckedSymbols}
+        {unCheckedSymbols}¶
       </div>
     </div>
   );
