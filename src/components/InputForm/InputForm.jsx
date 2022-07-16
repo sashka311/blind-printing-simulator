@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import c from "../InputForm/InputForm.module.css";
 
 const InputForm = ({
@@ -11,48 +11,62 @@ const InputForm = ({
   seconds,
 }) => {
   const [inputValue, setInputValue] = useState("");
-  const [expectedSymbol, setExpectedSymbol] = useState(0);
+  const [error, setError] = useState(false);
+  const [currentLine, setCurrentLine] = useState("");
+  const [stopwatchId, setStopwatchId] = useState(null);
+  const [symbols, setSymbol] = useState({
+    checkedSymbols: "",
+    unCheckedSymbols: ""
+  })
+
   const textArr = [
     "Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam dolore explicabo ipsa",
     "222",
     "444",
   ];
-  const [error, setError] = useState(false);
-  const [currentLine, setCurrentLine] = useState(textArr[Math.trunc(Math.random() * textArr.length)]);
-  const [stopwatchId, setStopwatchId] = useState();
-  const checkedSymbols = currentLine.slice(0, expectedSymbol);
-  const unCheckedSymbols = currentLine.slice(expectedSymbol, currentLine.length);
 
-  //////////////////////////////////////////////////////////
+  useEffect(() => {
+    setCurrentLine(textArr[Math.trunc(Math.random() * textArr.length)]);
+  }, [])
+
+  useEffect(() => {
+    const currentSymbol = inputValue.length;
+
+    setSymbol({
+      checkedSymbols: currentLine.slice(0, currentSymbol),
+      unCheckedSymbols: currentLine.slice(currentSymbol, currentLine.length),
+    })
+
+  }, [inputValue, currentLine])
 
   const showError = () => {
     setError(true);
     setTimeout(() => setError(false), 150);
   };
+
   const handleCheckInput = (e) => {
     //переход на новую строку
-    if ((e.key === "Enter" || e.key === " ") && expectedSymbol === currentLine.length) {
-      refresh(setInputValue, setExpectedSymbol, setCurrentLine, textArr);
+    if ((e.key === "Enter" || e.key === " ") && inputValue.length === currentLine.length) {
+      refresh(setInputValue, setCurrentLine, textArr);
       return;
     }
 
-    if (e.key !== currentLine[expectedSymbol] && e.key.length === 1) {
+    if (e.key === currentLine[inputValue.length - 1]) {
+      setCharactersAmount(charactersAmount + 1);
+    }
+  };
+
+  const handleInputOnChange = (e) => {
+
+    if (e.nativeEvent.data !== currentLine[inputValue.length] && e.nativeEvent.data) {
       showError();
       setMistakesAmount(mistakesAmount + 1);
       setCharactersAmount(charactersAmount + 1);
-      setInputValue(inputValue.slice(0, -1));
+      
+      e.preventDefault();
+      return;
     }
-    if (e.key === currentLine[expectedSymbol]) {
-      setCharactersAmount(charactersAmount + 1);
-      setExpectedSymbol(expectedSymbol + 1);
-    }
-  };
-  const handleBackspaceKeyDown = (e) => {
-    if (e.key === "Backspace" && expectedSymbol > 0) {
-      setExpectedSymbol(expectedSymbol - 1);
-    }
-  };
-  const handleInputOnChange = (e) => {
+
     setInputValue(e.target.value);
   };
 
@@ -60,11 +74,14 @@ const InputForm = ({
     const stopWatch = setInterval(() => {
       setSeconds((prev) => prev + 1);
     }, 1000);
+
     setStopwatchId(stopWatch);
   };
+
   const handleStopStopwatch = () => {
     clearInterval(stopwatchId);
   };
+
   return (
     <div>
       <input
@@ -73,13 +90,12 @@ const InputForm = ({
         className={error ? c.inputError : c.input}
         value={inputValue}
         onChange={handleInputOnChange}
-        onKeyDown={handleBackspaceKeyDown}
-        onKeyUp={handleCheckInput}
+        onKeyDown={handleCheckInput}
         type="text"
       />
       <div className={c.text}>
-        <span className={c.checked}>{checkedSymbols}</span>
-        {unCheckedSymbols}¶
+        <span className={c.checked}>{symbols.checkedSymbols}</span>
+        {symbols.unCheckedSymbols}¶
       </div>
     </div>
   );

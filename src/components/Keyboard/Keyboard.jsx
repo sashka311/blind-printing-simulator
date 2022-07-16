@@ -70,7 +70,7 @@ const Keyboard = ({ isFocused }) => {
 
   const handleKeyOnKeyDown = (e) => {
     if (!e.target.type) return;
-
+ 
     const key = e.code.toLowerCase();
     const codeQuery = document.querySelector(`[data-code="${key}"]`);
     const supQuery = document.querySelector(`[data-sup="${key}"]`);

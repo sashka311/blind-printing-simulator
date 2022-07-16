@@ -6,7 +6,7 @@ const Line = ({ lineArr }) => {
       {lineArr.map((elem, index) => (
         <div
           key={index}
-          data-code={elem.code ? elem.code.toLowerCase() : elem.code}
+          data-code={elem.code}
           data-sup={elem.sup}
           className={elem.className}
         >

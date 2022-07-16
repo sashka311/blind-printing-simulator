@@ -9,11 +9,11 @@ function App() {
   const [charactersAmount, setCharactersAmount] = useState(0);
   const [seconds, setSeconds] = useState(1);
 
-  const refresh = (setInputValue, setExpectedSymbol, setCurrentLine, textArr) => {
+  const refresh = (setInputValue, setCurrentLine, textArr) => {
     setInputValue("");
-    setExpectedSymbol(0);
     setCurrentLine(textArr[Math.floor(Math.random() * textArr.length)]);
   };
+
   return (
     <div className="App">
       <Header
