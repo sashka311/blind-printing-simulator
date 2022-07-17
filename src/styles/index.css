@@ -29,6 +29,7 @@
 }
 
 .App {
+  user-select: none;
   padding-top: 15px;
   margin: 0 auto;
   max-width: 750px;

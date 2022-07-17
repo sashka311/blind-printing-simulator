@@ -35,7 +35,6 @@ const InputForm = ({
       refresh(setInputValue, setExpectedSymbol, setCurrentLine, textArr);
       return;
     }
-
     if (e.key !== currentLine[expectedSymbol] && e.key.length === 1) {
       showError();
       setMistakesAmount(mistakesAmount + 1);
@@ -65,6 +64,7 @@ const InputForm = ({
   const handleStopStopwatch = () => {
     clearInterval(stopwatchId);
   };
+
   return (
     <div>
       <input
