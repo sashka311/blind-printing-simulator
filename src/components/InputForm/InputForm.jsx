@@ -55,7 +55,6 @@ const InputForm = ({
       e.preventDefault();
       return;
     }
-
     setInputValue(e.target.value);
   };
 

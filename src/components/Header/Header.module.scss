@@ -15,7 +15,6 @@ $translateRightIconFocus: $width - 26px;
   flex-wrap: nowrap;
   padding: 20px 0;
   color: var(--font-color-default);
-  transition: color $transition-mode $transition-ms;
   .wrapper {
     display: flex;
     align-items: center;
@@ -28,7 +27,6 @@ $translateRightIconFocus: $width - 26px;
   svg {
     width: 20px;
     height: 20px;
-    transition: color $transition-mode $transition-ms;
   }
   .changeMode {
     color: $base-color;
@@ -43,6 +41,7 @@ $translateRightIconFocus: $width - 26px;
     cursor: pointer;
     height: 20px;
     svg {
+      transition: color $transition-mode $transition-ms;
       color: var(--svg-color-default);
     }
   }
@@ -61,6 +60,8 @@ $translateRightIconFocus: $width - 26px;
 
   .speedValue,
   .mistakesValue {
+    transition: color $transition-mode $transition-ms;
+
     margin-left: 7px;
   }
   .speed {
@@ -92,8 +93,7 @@ $translateRightIconFocus: $width - 26px;
   right: 0;
   bottom: 0;
   background-color: #c6c8ca;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
+  transition: background-color $transition-ms $transition-mode;
   border-radius: 34px;
 }
 

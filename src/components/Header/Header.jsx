@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import SvgSelector from "../SvgSelector";
+import { BsMoon, BsSun } from "react-icons/bs";
 import c from "./Header.module.css";
 
 const Header = ({ refresh, isFocused, setIsFocused, mistakesAmount, charactersAmount, seconds }) => {
-  const [theme, setTheme] = useState("light");
+  //dont know how do it with useEffect
+  const [theme, setTheme] = useState(JSON.parse(localStorage.getItem("theme")));
 
   const changeTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
+
+    console.log(localStorage.getItem("theme") + " " + theme);
   };
 
   const mistakes = charactersAmount ? Math.round((mistakesAmount / charactersAmount) * 10000) / 100 + "%" : "-/-";
@@ -19,6 +23,7 @@ const Header = ({ refresh, isFocused, setIsFocused, mistakesAmount, charactersAm
     components.forEach((component) => {
       root.style.setProperty(`--${component}-default`, `var(--${component}-${theme})`);
     });
+    localStorage.setItem("theme", JSON.stringify(theme));
   }, [theme]);
 
   const handleSwitchFocusClick = (e) => {
@@ -44,10 +49,14 @@ const Header = ({ refresh, isFocused, setIsFocused, mistakesAmount, charactersAm
       </label>
       {/*switch changeTheme*/}
       <label className={c.switch}>
-        <input onClick={changeTheme} type="checkbox" />
+        <input checked={theme !== "light"} onClick={changeTheme} type="checkbox" />
         <span className={c.slider}>
-          <div className={c.on}>🌙</div>
-          <div className={c.off}>☀️</div>
+          <div className={c.on}>
+            <BsMoon />
+          </div>
+          <div className={c.off}>
+            <BsSun />️
+          </div>
         </span>
       </label>
 
