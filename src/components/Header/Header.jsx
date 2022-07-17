@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
 import SvgSelector from "../SvgSelector";
-import c from "./header.module.css";
+import c from "./Header.module.css";
 
 const Header = ({ refresh, isFocused, setIsFocused, mistakesAmount, charactersAmount, seconds }) => {
   const [theme, setTheme] = useState("light");
+
   const changeTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
   };
+
   const mistakes = charactersAmount ? Math.round((mistakesAmount / charactersAmount) * 10000) / 100 + "%" : "-/-";
   const speed = charactersAmount ? Math.round((charactersAmount - mistakesAmount) / (seconds / 60)) : "-/-";
+
   useEffect(() => {
     const components = ["body-background", "svg-color", "font-color", "focus-background", "border-color"];
     const root = document.getElementById("root");
@@ -21,6 +24,7 @@ const Header = ({ refresh, isFocused, setIsFocused, mistakesAmount, charactersAm
   const handleSwitchFocusClick = (e) => {
     setIsFocused(!isFocused);
   };
+
   return (
     <div className={c.header}>
       <div className={c.wrapper}>
@@ -55,7 +59,7 @@ const Header = ({ refresh, isFocused, setIsFocused, mistakesAmount, charactersAm
         <div className={c.mistakes}>
           {!isFocused && (
             <div className={c.mistakesIcon}>
-              <SvgSelector id="mistake" />
+              <SvgSelector id={"mistake"} />
             </div>
           )}
           <div className={c.mistakesValue}>{mistakes}</div>

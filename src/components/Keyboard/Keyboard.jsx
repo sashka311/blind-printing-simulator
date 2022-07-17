@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Keyboard.css";
 import Line from "../Line";
 
-const Keyboard = ({ isFocused }) => {
-  const keyArray = [
+const Keyboard = () => {
+  const [keyArray, setKeyArray] = useState([
     [
       { value: "`", code: "Backquote", sup: "~", className: "key" },
       { value: "1", code: "digit1", sup: "!", className: "key" },
@@ -66,34 +66,34 @@ const Keyboard = ({ isFocused }) => {
       { value: "Shift", code: "ShiftRight", sup: "", className: "key sys shift" },
     ],
     [{ value: " ", code: "Space", sup: "", className: "key sys space" }],
-  ];
+  ]);
 
+  const getKeyButton = (key) => {
+    for (let i = 0; i < keyArray.length; i++) {
+      for (let j = 0; j < keyArray[i].length; j++) {
+        const keyButton = keyArray[i][j];
+        if (keyButton.code.toLowerCase() === key) {
+          return keyButton;
+        }
+      }
+    }
+  };
   const handleKeyOnKeyDown = (e) => {
     if (!e.target.type) return;
-
-    const key = e.code.toLowerCase();
-    const codeQuery = document.querySelector(`[data-code="${key}"]`);
-    const supQuery = document.querySelector(`[data-sup="${key}"]`);
-
-    const keyElement = codeQuery || supQuery;
-
-    if (keyElement) keyElement.classList.add("active");
+    const keyButton = getKeyButton(e.code.toLowerCase());
+    keyButton.className = `${keyButton.className} active`;
   };
 
   const handleKeyOnKeyUp = (e) => {
     if (!e.target.type) return;
-
-    const key = e.code.toLowerCase();
-    const codeQuery = document.querySelector(`[data-code="${key}"]`);
-    const supQuery = document.querySelector(`[data-sup="${key}"]`);
-
-    const keyElement = codeQuery || supQuery;
-
-    if (keyElement) keyElement.classList.remove("active");
+    const keyButton = getKeyButton(e.code.toLowerCase());
+    keyButton.className = `${keyButton.className.replaceAll(" active", "")}`;
   };
 
-  document.addEventListener("keydown", handleKeyOnKeyDown);
-  document.addEventListener("keyup", handleKeyOnKeyUp);
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyOnKeyDown);
+    document.addEventListener("keyup", handleKeyOnKeyUp);
+  }, []);
 
   return (
     <div className="keyboard">

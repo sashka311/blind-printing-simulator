@@ -1,5 +1,5 @@
 import "./styles/index.css";
-import Header from "./components/header/header";
+import Header from "./components/Header/Header";
 import InputForm from "./components/InputForm/InputForm";
 import Keyboard from "./components/Keyboard/Keyboard";
 import { useEffect, useState } from "react";
@@ -9,9 +9,8 @@ function App() {
   const [charactersAmount, setCharactersAmount] = useState(0);
   const [seconds, setSeconds] = useState(1);
 
-  const refresh = (setInputValue, setExpectedSymbol, setCurrentLine, textArr) => {
+  const refresh = (setInputValue, setCurrentLine, textArr) => {
     setInputValue("");
-    setExpectedSymbol(0);
     setCurrentLine(textArr[Math.floor(Math.random() * textArr.length)]);
   };
   return (
@@ -30,10 +29,9 @@ function App() {
         setMistakesAmount={setMistakesAmount}
         charactersAmount={charactersAmount}
         setCharactersAmount={setCharactersAmount}
-        seconds={seconds}
         setSeconds={setSeconds}
       />
-      {!isFocused && <Keyboard isFocused={isFocused} />}
+      {!isFocused && <Keyboard />}
     </div>
   );
 }

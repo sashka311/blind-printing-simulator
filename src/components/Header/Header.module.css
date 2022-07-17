@@ -154,13 +154,13 @@ input:checked + .slider:before {
 }
 .switchFocus .slider:before {
   bottom: 1px;
-  left: 2px;
+  left: 1px;
 }
 .switchFocus .slider {
   border: 2px solid #c6c8ca;
 }
 .switchFocus input:checked + .slider:before {
-  transform: translateX(55px);
+  transform: translateX(56px);
 }
 .switchFocus .off {
   transform: translateX(29px);
@@ -179,4 +179,4 @@ input:checked + .slider:before {
   background: #c6c8ca;
 }
 
-/*# sourceMappingURL=header.module.css.map */
+/*# sourceMappingURL=Header.module.css.map */

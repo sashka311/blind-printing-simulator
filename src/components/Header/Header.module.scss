@@ -5,7 +5,7 @@ $translateCircle: $width - 28px;
 $translateRightIcon: $width - 25px;
 
 $widthFocus: 84px;
-$translateCircleFocus: $width;
+$translateCircleFocus: $width + 1px;
 $translateRightIconFocus: $width - 26px;
 
 .header {
@@ -146,7 +146,7 @@ input:checked + .slider:before {
   color: white;
   .slider:before {
     bottom: 1px;
-    left: 2px;
+    left: 1px;
   }
   .slider {
     border: 2px solid #c6c8ca;
@@ -171,4 +171,3 @@ input:checked + .slider:before {
     background: #c6c8ca;
   }
 }
-
