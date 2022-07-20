@@ -1,7 +1,7 @@
 @charset "UTF-8";
 :root {
   --body-background-light: #fff;
-  --body-background-dark: rgba(0, 0, 0, 0.85);
+  --body-background-dark: rgb(42, 42, 42);
   --body-background-default: var(--body-background-light);
   --svg-color-light: #000000;
   --svg-color-dark: #ffffff;

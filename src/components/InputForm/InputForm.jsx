@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import c from "../InputForm/InputForm.module.css";
+import { currentTextLanguage } from "../Language";
 
 const InputForm = ({
   refresh,
@@ -8,9 +9,12 @@ const InputForm = ({
   charactersAmount,
   setCharactersAmount,
   setSeconds,
+  language,
 }) => {
   const [inputValue, setInputValue] = useState("");
   const [error, setError] = useState(false);
+
+  const [textArr, setTextArr] = useState(currentTextLanguage(language));
   const [currentLine, setCurrentLine] = useState("");
   const [stopwatchId, setStopwatchId] = useState(null);
   const [symbols, setSymbol] = useState({
@@ -18,15 +22,17 @@ const InputForm = ({
     unCheckedSymbols: "",
   });
 
-  const textArr = [
-    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam dolore explicabo ipsa",
-    "222",
-    "444",
-  ];
-
   useEffect(() => {
     setCurrentLine(textArr[Math.trunc(Math.random() * textArr.length)]);
   }, []);
+
+  useEffect(() => {
+    setTextArr(currentTextLanguage(language));
+  }, [language]);
+
+  useEffect(() => {
+    refresh(setInputValue, setCurrentLine, textArr);
+  }, [textArr]);
 
   useEffect(() => {
     const currentSymbol = inputValue.length;
@@ -34,7 +40,7 @@ const InputForm = ({
       checkedSymbols: currentLine.slice(0, currentSymbol),
       unCheckedSymbols: currentLine.slice(currentSymbol, currentLine.length),
     });
-  }, [inputValue, currentLine]);
+  }, [inputValue, currentLine, language]);
 
   const showError = () => {
     setError(true);

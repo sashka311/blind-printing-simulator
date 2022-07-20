@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Source+Sans+Pro&display=swap");
 :root {
   --body-background-light: #fff;
-  --body-background-dark: rgba(0, 0, 0, 0.85);
+  --body-background-dark: rgb(42, 42, 42);
   --body-background-default: var(--body-background-light);
   --svg-color-light: #000000;
   --svg-color-dark: #ffffff;

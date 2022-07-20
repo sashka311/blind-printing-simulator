@@ -3,14 +3,23 @@ import SvgSelector from "../SvgSelector";
 import { BsMoon, BsSun } from "react-icons/bs";
 import c from "./Header.module.css";
 
-const Header = ({ refresh, isFocused, setIsFocused, mistakesAmount, charactersAmount, seconds }) => {
+const Header = ({
+  refresh,
+  isFocused,
+  setIsFocused,
+  mistakesAmount,
+  charactersAmount,
+  seconds,
+  theme,
+  setTheme,
+  modal,
+  setModal,
+  language,
+}) => {
   //dont know how do it with useEffect
-  const [theme, setTheme] = useState(JSON.parse(localStorage.getItem("theme")));
 
   const changeTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
-
-    console.log(localStorage.getItem("theme") + " " + theme);
   };
 
   const mistakes = charactersAmount ? Math.round((mistakesAmount / charactersAmount) * 10000) / 100 + "%" : "-/-";
@@ -29,11 +38,15 @@ const Header = ({ refresh, isFocused, setIsFocused, mistakesAmount, charactersAm
   const handleSwitchFocusClick = (e) => {
     setIsFocused(!isFocused);
   };
-
+  const handleToggleModal = () => {
+    setModal(true);
+  };
   return (
     <div className={c.header}>
       <div className={c.wrapper}>
-        <div className={c.changeMode}>Русский практика</div>
+        <div className={c.changeMode} onClick={handleToggleModal}>
+          {language}
+        </div>
         <div className={c.reset}>
           <SvgSelector id="reset" />
         </div>
@@ -49,7 +62,7 @@ const Header = ({ refresh, isFocused, setIsFocused, mistakesAmount, charactersAm
       </label>
       {/*switch changeTheme*/}
       <label className={c.switch}>
-        <input checked={theme !== "light"} onClick={changeTheme} type="checkbox" />
+        <input defaultChecked={theme !== "light"} onClick={changeTheme} type="checkbox" />
         <span className={c.slider}>
           <div className={c.on}>
             <BsMoon />
