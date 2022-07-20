@@ -29,12 +29,13 @@ $translateRightIconFocus: $width - 26px;
     height: 20px;
   }
   .changeMode {
+    display: flex;
+    align-items: center;
     color: $base-color;
     cursor: pointer;
   }
-  .changeMode:after {
-    content: "▼";
-    margin-left: auto;
+  .dropdown {
+    margin-left: 6px;
   }
   .reset {
     margin-left: 30px;
@@ -50,8 +51,6 @@ $translateRightIconFocus: $width - 26px;
   .mistakes {
     display: flex;
     align-items: center;
-
-    cursor: pointer;
   }
   .speedIcon,
   .mistakesIcon {
@@ -144,6 +143,10 @@ input:checked + .slider:before {
 .switchFocus {
   width: $widthFocus;
   color: white;
+  .on,
+  .off {
+    margin-bottom: 2px;
+  }
   .slider:before {
     bottom: 1px;
     left: 1px;

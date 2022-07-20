@@ -11,25 +11,29 @@ const Keyboard = ({ language }) => {
       for (let j = 0; j < keyArray[i].length; j++) {
         const keyButton = keyArray[i][j];
         if (keyButton.code.toLowerCase() === key) {
-          return keyButton;
+          return [i, j];
         }
       }
     }
+    return [undefined, undefined];
   };
 
   const handleKeyOnKeyDown = (e) => {
     if (!e.target.type) return;
-    const keyButton = getKeyButton(e.code.toLowerCase());
-    console.log(keyButton);
-    if (!keyButton) return;
-    keyButton.className = `${keyButton.className} active`;
+    const [i, j] = getKeyButton(e.code.toLowerCase());
+    if (!keyArray[i]) return;
+    let keyBoardClone = [...keyArray];
+    keyBoardClone[i][j].className = `${keyBoardClone[i][j].className} active`;
+    setKeyArray(keyBoardClone);
   };
 
   const handleKeyOnKeyUp = (e) => {
     if (!e.target.type) return;
-    const keyButton = getKeyButton(e.code.toLowerCase());
-    if (!keyButton) return;
-    keyButton.className = `${keyButton.className.replaceAll(" active", "")}`;
+    const [i, j] = getKeyButton(e.code.toLowerCase());
+    if (!keyArray[i]) return;
+    let keyBoardClone = [...keyArray];
+    keyBoardClone[i][j].className = keyBoardClone[i][j].className.replaceAll(" active", "");
+    setKeyArray(keyBoardClone);
   };
 
   useEffect(() => {

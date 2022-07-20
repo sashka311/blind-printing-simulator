@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import SvgSelector from "../SvgSelector";
 import { BsMoon, BsSun } from "react-icons/bs";
+import { IoIosArrowDropdownCircle } from "react-icons/io";
+import { languageName } from "../Language";
+
 import c from "./Header.module.css";
 
 const Header = ({
@@ -12,12 +15,9 @@ const Header = ({
   seconds,
   theme,
   setTheme,
-  modal,
   setModal,
   language,
 }) => {
-  //dont know how do it with useEffect
-
   const changeTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
   };
@@ -41,13 +41,15 @@ const Header = ({
   const handleToggleModal = () => {
     setModal(true);
   };
+
   return (
     <div className={c.header}>
       <div className={c.wrapper}>
         <div className={c.changeMode} onClick={handleToggleModal}>
-          {language}
+          {languageName(language)}
+          <IoIosArrowDropdownCircle className={c.dropdown} />
         </div>
-        <div className={c.reset}>
+        <div onClick={refresh} className={c.reset}>
           <SvgSelector id="reset" />
         </div>
       </div>

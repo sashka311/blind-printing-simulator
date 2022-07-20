@@ -10,17 +10,23 @@ const InputForm = ({
   setCharactersAmount,
   setSeconds,
   language,
+  setInputValue,
+  inputValue,
+  currentLine,
+  setCurrentLine,
+  textArr,
+  setTextArr,
 }) => {
-  const [inputValue, setInputValue] = useState("");
   const [error, setError] = useState(false);
 
-  const [textArr, setTextArr] = useState(currentTextLanguage(language));
-  const [currentLine, setCurrentLine] = useState("");
   const [stopwatchId, setStopwatchId] = useState(null);
   const [symbols, setSymbol] = useState({
     checkedSymbols: "",
     unCheckedSymbols: "",
   });
+
+  const CHARS_IN_ROW = 78;
+  const AMOUNT_OF_LINES = 3;
 
   useEffect(() => {
     setCurrentLine(textArr[Math.trunc(Math.random() * textArr.length)]);
@@ -31,15 +37,19 @@ const InputForm = ({
   }, [language]);
 
   useEffect(() => {
-    refresh(setInputValue, setCurrentLine, textArr);
+    refresh();
   }, [textArr]);
 
   useEffect(() => {
     const currentSymbol = inputValue.length;
     setSymbol({
       checkedSymbols: currentLine.slice(0, currentSymbol),
-      unCheckedSymbols: currentLine.slice(currentSymbol, currentLine.length),
+      unCheckedSymbols: currentLine.slice(currentSymbol, CHARS_IN_ROW * AMOUNT_OF_LINES),
     });
+    if (inputValue.length === CHARS_IN_ROW) {
+      setInputValue("");
+      setCurrentLine(currentLine.slice(CHARS_IN_ROW));
+    }
   }, [inputValue, currentLine, language]);
 
   const showError = () => {
@@ -49,7 +59,7 @@ const InputForm = ({
 
   const handleInputOnChange = (e) => {
     if (e.nativeEvent.data && inputValue.length === currentLine.length) {
-      refresh(setInputValue, setCurrentLine, textArr);
+      refresh();
       return;
     }
     setCharactersAmount(charactersAmount + 1);

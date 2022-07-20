@@ -1,7 +1,7 @@
 import React from "react";
 import c from "../Modal/Modal.module.css";
 
-const Modal = ({ visible, setVisible, setLanguage, language }) => {
+const Modal = ({ visible, setVisible, setLanguage }) => {
   const rootClasses = [c.modalWrapper];
 
   if (visible) {
@@ -17,8 +17,8 @@ const Modal = ({ visible, setVisible, setLanguage, language }) => {
   return (
     <div className={rootClasses.join(" ")} onClick={() => setVisible(false)}>
       <div className={c.modal} onClick={(e) => e.stopPropagation()}>
-        <div onClick={(e) => handleSetLanguageClick("ru", e)}>ru</div>
-        <div onClick={(e) => handleSetLanguageClick("en", e)}>en</div>
+        <div onClick={(e) => handleSetLanguageClick("ru", e)}>Russian layout</div>
+        <div onClick={(e) => handleSetLanguageClick("en", e)}>English layout</div>
       </div>
     </div>
   );
