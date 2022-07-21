@@ -14,18 +14,20 @@ function App() {
   const [charactersAmount, setCharactersAmount] = useState(0);
   const [seconds, setSeconds] = useState(1);
 
-  const [language, setLanguage] = useState("en");
+  const [language, setLanguage] = useState("ru");
   const [modal, setModal] = useState(false);
 
   const [inputValue, setInputValue] = useState("");
-  const [currentLine, setCurrentLine] = useState("");
+  const [currentText, setCurrentText] = useState("");
   const [textArr, setTextArr] = useState(currentTextLanguage(language));
+
+  const [settings, setSettings] = useState({ colorful: false, autoDelete: true });
   const refresh = () => {
     setMistakesAmount(0);
     setCharactersAmount(0);
     setSeconds(1);
     setInputValue("");
-    setCurrentLine(textArr[Math.floor(Math.random() * textArr.length)]);
+    setCurrentText(textArr[Math.floor(Math.random() * textArr.length)]);
   };
   return (
     <div className="App">
@@ -53,12 +55,13 @@ function App() {
         language={language}
         setInputValue={setInputValue}
         inputValue={inputValue}
-        currentLine={currentLine}
-        setCurrentLine={setCurrentLine}
+        currentText={currentText}
+        setCurrentText={setCurrentText}
         textArr={textArr}
         setTextArr={setTextArr}
+        settings={settings}
       />
-      {!isFocused && <Keyboard language={language} />}
+      {!isFocused && <Keyboard language={language} settings={settings} setSettings={setSettings} />}
     </div>
   );
 }

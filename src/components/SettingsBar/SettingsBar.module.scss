@@ -1,0 +1,34 @@
+@import "../../styles/variables.scss";
+.settingsBar {
+  margin-top: 40px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 0 0px;
+}
+svg {
+  color: var(--font-color-default);
+  transition: color $transition-ms $transition-mode;
+}
+.icon {
+  height: 20px;
+  width: 20px;
+  margin: 0 8px;
+}
+
+.deleteIcon {
+  transform: scale(0);
+  position: absolute;
+  height: 5px;
+  width: 5px;
+  top: -8px;
+  right: 8px;
+  transition: transform 0.05s ease-in;
+}
+.deleteIcon.active {
+  transform: scale(1);
+}
+
+.elem {
+  position: relative;
+}

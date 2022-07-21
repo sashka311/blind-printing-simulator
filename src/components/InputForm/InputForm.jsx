@@ -12,10 +12,11 @@ const InputForm = ({
   language,
   setInputValue,
   inputValue,
-  currentLine,
-  setCurrentLine,
+  currentText,
+  setCurrentText,
   textArr,
   setTextArr,
+  settings,
 }) => {
   const [error, setError] = useState(false);
 
@@ -29,7 +30,7 @@ const InputForm = ({
   const AMOUNT_OF_LINES = 3;
 
   useEffect(() => {
-    setCurrentLine(textArr[Math.trunc(Math.random() * textArr.length)]);
+    setCurrentText(textArr[Math.trunc(Math.random() * textArr.length)]);
   }, []);
 
   useEffect(() => {
@@ -43,14 +44,14 @@ const InputForm = ({
   useEffect(() => {
     const currentSymbol = inputValue.length;
     setSymbol({
-      checkedSymbols: currentLine.slice(0, currentSymbol),
-      unCheckedSymbols: currentLine.slice(currentSymbol, CHARS_IN_ROW * AMOUNT_OF_LINES),
+      checkedSymbols: currentText.slice(0, currentSymbol),
+      unCheckedSymbols: currentText.slice(currentSymbol, CHARS_IN_ROW * AMOUNT_OF_LINES),
     });
-    if (inputValue.length === CHARS_IN_ROW) {
+    if (inputValue.length === CHARS_IN_ROW && !error) {
       setInputValue("");
-      setCurrentLine(currentLine.slice(CHARS_IN_ROW));
+      setCurrentText(currentText.slice(CHARS_IN_ROW));
     }
-  }, [inputValue, currentLine, language]);
+  }, [inputValue, currentText, language]);
 
   const showError = () => {
     setError(true);
@@ -58,18 +59,24 @@ const InputForm = ({
   };
 
   const handleInputOnChange = (e) => {
-    if (e.nativeEvent.data && inputValue.length === currentLine.length) {
+    if (e.nativeEvent.data && inputValue.length === currentText.length && !error) {
       refresh();
       return;
     }
-    setCharactersAmount(charactersAmount + 1);
-    if (e.nativeEvent.data !== currentLine[inputValue.length] && e.nativeEvent.data) {
-      showError();
+    if (inputValue === symbols.checkedSymbols) {
+      setError(false);
+    }
+    if (e.nativeEvent.data) {
+      setCharactersAmount(charactersAmount + 1);
+    }
+    if (e.nativeEvent.data !== currentText[inputValue.length] && e.nativeEvent.data) {
+      setError(true);
       setMistakesAmount(mistakesAmount + 1);
       setCharactersAmount(charactersAmount + 1);
 
-      e.preventDefault();
-      return;
+      if (settings.autoDelete) {
+        return;
+      }
     }
     setInputValue(e.target.value);
   };
