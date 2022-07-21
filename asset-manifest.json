@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/blind-printing-simulator/static/css/main.07c3f50a.css",
-    "main.js": "/blind-printing-simulator/static/js/main.f38ec240.js",
+    "main.js": "/blind-printing-simulator/static/js/main.a18a658a.js",
     "index.html": "/blind-printing-simulator/index.html",
     "main.07c3f50a.css.map": "/blind-printing-simulator/static/css/main.07c3f50a.css.map",
-    "main.f38ec240.js.map": "/blind-printing-simulator/static/js/main.f38ec240.js.map"
+    "main.a18a658a.js.map": "/blind-printing-simulator/static/js/main.a18a658a.js.map"
   },
   "entrypoints": [
     "static/css/main.07c3f50a.css",
-    "static/js/main.f38ec240.js"
+    "static/js/main.a18a658a.js"
   ]
 }
