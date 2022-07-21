@@ -7,7 +7,9 @@ import Modal from "./components/Modal/Modal";
 import { currentTextLanguage } from "./components/Language";
 function App() {
   const [isFocused, setIsFocused] = useState(false);
-  const [theme, setTheme] = useState(JSON.parse(localStorage.getItem("theme")));
+  const [theme, setTheme] = useState(
+    JSON.parse(localStorage.getItem("theme")) ? JSON.parse(localStorage.getItem("theme")) : "light"
+  );
   const [mistakesAmount, setMistakesAmount] = useState(0);
   const [charactersAmount, setCharactersAmount] = useState(0);
   const [seconds, setSeconds] = useState(1);
@@ -25,7 +27,6 @@ function App() {
     setInputValue("");
     setCurrentLine(textArr[Math.floor(Math.random() * textArr.length)]);
   };
-
   return (
     <div className="App">
       <Modal setVisible={setModal} visible={modal} setLanguage={setLanguage} language={language} />
