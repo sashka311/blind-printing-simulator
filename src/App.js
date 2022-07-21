@@ -21,6 +21,7 @@ function App() {
   const refresh = () => {
     setMistakesAmount(0);
     setCharactersAmount(0);
+    setSeconds(1);
     setInputValue("");
     setCurrentLine(textArr[Math.floor(Math.random() * textArr.length)]);
   };
