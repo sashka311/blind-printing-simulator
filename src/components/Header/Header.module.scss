@@ -8,6 +8,22 @@ $widthFocus: 84px;
 $translateCircleFocus: $width + 1px;
 $translateRightIconFocus: $width - 26px;
 
+.headerWrapper {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  box-shadow: 3px 5px 15px 5px rgba(0, 0, 0, 0.1);
+  transition: box-shadow $transition-ms $transition-mode;
+  padding: 5px 0;
+  &.focused {
+    box-shadow: 3px 5px 15px 5px rgba(0, 0, 0, 0);
+    transition: box-shadow $transition-ms $transition-mode;
+  }
+}
+
 .header {
   display: flex;
   align-items: center;
@@ -15,6 +31,8 @@ $translateRightIconFocus: $width - 26px;
   flex-wrap: nowrap;
   padding: 20px 0;
   color: var(--font-color-default);
+  width: 750px;
+
   .wrapper {
     display: flex;
     align-items: center;

@@ -18,6 +18,7 @@
 
 .input,
 .inputError {
+  margin-top: 87px;
   border-radius: 4px;
   width: 100%;
   border: 0;

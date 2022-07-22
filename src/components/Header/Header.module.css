@@ -16,6 +16,22 @@
   --border-color-default: var(--border-color-light);
 }
 
+.headerWrapper {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  box-shadow: 3px 5px 15px 5px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in;
+  padding: 5px 0;
+}
+.headerWrapper.focused {
+  box-shadow: 3px 5px 15px 5px rgba(0, 0, 0, 0);
+  transition: box-shadow 0.3s ease-in;
+}
+
 .header {
   display: flex;
   align-items: center;
@@ -23,6 +39,7 @@
   flex-wrap: nowrap;
   padding: 20px 0;
   color: var(--font-color-default);
+  width: 750px;
 }
 .header .wrapper {
   display: flex;

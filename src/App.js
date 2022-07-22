@@ -3,7 +3,6 @@ import Header from "./components/Header/Header";
 import InputForm from "./components/InputForm/InputForm";
 import Keyboard from "./components/Keyboard/Keyboard";
 import { useEffect, useState } from "react";
-import Modal from "./components/Modal/Modal";
 import { currentTextLanguage } from "./components/Language";
 function App() {
   const [isFocused, setIsFocused] = useState(false);
@@ -31,7 +30,7 @@ function App() {
   };
   return (
     <div className="App">
-      <Modal setVisible={setModal} visible={modal} setLanguage={setLanguage} language={language} />
+      {/*<Modal setVisible={setModal} visible={modal} setLanguage={setLanguage} language={language} />*/}
       <Header
         isFocused={isFocused}
         setIsFocused={setIsFocused}
@@ -44,6 +43,7 @@ function App() {
         modal={modal}
         setModal={setModal}
         language={language}
+        setLanguage={setLanguage}
       />
       <InputForm
         refresh={refresh}
