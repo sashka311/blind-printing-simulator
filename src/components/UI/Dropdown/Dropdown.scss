@@ -18,8 +18,9 @@
   justify-content: center;
   align-items: center;
   background: var(--body-background-default);
+  -webkit-box-shadow: -1px 25px 19px 0px rgba(0, 0, 0, 0.37);
+  box-shadow: -1px 25px 19px 0px rgba(0, 0, 0, 0.37);
   width: 93px;
-  filter: brightness(0.95);
   position: absolute;
   top: 59px;
   overflow: hidden;
@@ -30,6 +31,8 @@
 .dropdownMenuItem {
   margin: 5px 0;
   cursor: pointer;
+  height: 20px;
+  overflow: visible;
   &:hover {
     filter: opacity(50%);
   }
@@ -39,15 +42,18 @@
   opacity: 0;
   max-height: 0;
 }
+
 .dropdown-enter-active {
   opacity: 1;
   max-height: 100px;
   transition: all 300ms ease-in;
 }
+
 .dropdown-exit {
   opacity: 1;
   max-height: 100px;
 }
+
 .dropdown-exit-active {
   opacity: 0;
   max-height: 0;

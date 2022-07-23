@@ -34,8 +34,9 @@
   justify-content: center;
   align-items: center;
   background: var(--body-background-default);
+  -webkit-box-shadow: -1px 25px 19px 0px rgba(0, 0, 0, 0.37);
+  box-shadow: -1px 25px 19px 0px rgba(0, 0, 0, 0.37);
   width: 93px;
-  filter: brightness(0.95);
   position: absolute;
   top: 59px;
   overflow: hidden;
@@ -46,6 +47,8 @@
 .dropdownMenuItem {
   margin: 5px 0;
   cursor: pointer;
+  height: 20px;
+  overflow: visible;
 }
 .dropdownMenuItem:hover {
   filter: opacity(50%);

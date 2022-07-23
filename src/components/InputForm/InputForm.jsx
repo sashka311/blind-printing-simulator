@@ -70,7 +70,7 @@ const InputForm = ({
       setCharactersAmount(charactersAmount + 1);
     }
     if (e.nativeEvent.data !== currentText[inputValue.length] && e.nativeEvent.data) {
-      setError(true);
+      settings.autoDelete ? showError() : setError(true);
       setMistakesAmount(mistakesAmount + 1);
       setCharactersAmount(charactersAmount + 1);
 
